@@ -143,7 +143,7 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 
 **The Current Audio Playing** <a:blob:439807830586032138>${serverQueue.songs[0].title}`)
 		return msg.channel.sendEmbed(embedqu);
-	} else if (command === `stop`) {
+	} else if (command === `pause`) {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
@@ -251,7 +251,7 @@ if (message.content.startsWith(PREFIX + 'setavatar')) {
 }
 });
 
-let prefix = 'm';
+let prefix = '5';
 
 client.on('message', msg => {
 	if (msg.content.startsWith(prefix + 'help')) {
@@ -263,7 +263,10 @@ msg.author.send("Commands Music " + `  **
 :headphones:  ${prefix}stop|لأيقاف الموسيقى  
 :headphones:  ${prefix}volume |لتغير حجم الصوت
 :headphones:  ${prefix}np | لرؤية الموسيقى الشغالة حالياً
-:headphones:  ${prefix}resume |لاعادت تشغيل الاغنية الموجودة
+:headphones:  ${prefix}pause |لايقاف الاغنية الحالية مؤقتا
+:headphones:  ${prefix}resume |لاكمال الاغنية الحالية
+:headphones:  ${prefix}join |لتعليق البوت فالروم
+for help = <@426471752877604874> <@452191687159185409>
 **`);
  }
 });
@@ -276,7 +279,7 @@ client.on('message', message => {
   // we ignore it
   if (!message.guild) return;
 
-  if (message.content === 'mjoin') {
+  if (message.content === '3join') {
     // Only try to join the sender's voice channel if they are in one themselves
     if (message.member.voiceChannel) {
       message.member.voiceChannel.join()
@@ -290,7 +293,8 @@ client.on('message', message => {
 })
 
 client.on('ready', () => {
-  client.user.setGame('❤ والله احبك ❤','https://www.twitch.tv/pd13');
+     client.user.setActivity("Faster",{type: 'LISTENING'});
+
 });
 
 client.login(process.env.BOT_TOKEN);
