@@ -143,14 +143,14 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 
 **The Current Audio Playing** <a:blob:439807830586032138>${serverQueue.songs[0].title}`)
 		return msg.channel.sendEmbed(embedqu);
-	} else if (command === `pause`) {
+	} else if (command === `off`) {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
 			return msg.channel.send('**The Audio have Been stoped :pause_button:** ');
 		}
 		return msg.channel.send('**There is nothing playing.<:xx123:439800927457640448>**');
-	} else if (command === `resume`) {
+	} else if (command === `on`) {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
 			serverQueue.connection.dispatcher.resume();
